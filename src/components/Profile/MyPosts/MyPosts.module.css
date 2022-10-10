@@ -1,4 +1,9 @@
 
 .item {
   color: greenyellow;
+  margin: 10px
+}
+
+.postsBlock{
+  padding: 10px;
 }

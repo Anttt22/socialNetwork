@@ -3,12 +3,13 @@ import React from "react";
 import Post from './Post/Post'
 import k from './MyPosts.module.css'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
   return (
-    <div>
+    <div className={k.postsBlock}>
+      <h3>My posts</h3>
       <div>
-        <textarea></textarea>
-        <button>Add post</button>
+        <div><textarea></textarea></div>
+        <div><button>Add post</button></div> 
       </div>
       <div className={k.item}>
         <Post message='holla' like ='12' />
