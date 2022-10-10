@@ -9,7 +9,6 @@ const Post = (props) => {
       {props.message}
 
       <div className={k.likecolor}><span>like </span><span>{props.like}</span></div>
-
     </div>
   )
 }
