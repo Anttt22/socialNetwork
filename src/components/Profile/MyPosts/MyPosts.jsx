@@ -4,21 +4,23 @@ import Post from './Post/Post'
 import k from './MyPosts.module.css'
 
 const MyPosts = (props) => {
+
+  let postElements= props.pd
+    .map(elem => (<Post message={elem.message} like={elem.like} />))
+
   return (
     <div className={k.postsBlock}>
       <h3>My posts</h3>
       <div>
         <div><textarea></textarea></div>
-        <div><button>Add post</button></div> 
+        <div><button>Add post</button></div>
       </div>
+
       <div className={k.item}>
-        <Post message='holla' like ='12' />
-        <Post message='how is life' like ='56'/>
-        <Post message='yop' like ='4'/>
+        {postElements}
       </div>
 
     </div>
-
 
   )
 }
