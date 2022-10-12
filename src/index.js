@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import state from './redux/state';
+
+import {renderAll} from './render'
+import state from './redux/state'
 
 
-ReactDOM.render(
-  <App state={state}/>,
-  document.getElementById('root')
-);
+
+
+renderAll(state);
+
+
+
 
 

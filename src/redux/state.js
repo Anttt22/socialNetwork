@@ -1,3 +1,5 @@
+import {renderAll} from '.././render'
+
 
 let state = {
   dialogsPage: {
@@ -26,6 +28,21 @@ let state = {
     ]
   }
 }
+
+export let addPostS=(newpost_p)=>{
+  
+  var newpost={
+    id:5,
+    message:newpost_p,
+    like:0
+  }
+  state.profilePage.postData.push(newpost)
+
+
+  renderAll(state);
+
+}
+
 
 
 export default state
