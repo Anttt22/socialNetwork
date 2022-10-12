@@ -1,4 +1,4 @@
-import {renderAll} from '.././render'
+import { renderAll } from '.././render'
 
 
 let state = {
@@ -25,24 +25,27 @@ let state = {
       { id: 0, message: 'holla', like: '12' },
       { id: 1, message: 'how is life', like: '44' },
       { id: 2, message: 'yop', like: '2' },
-    ]
+    ],
+    newPostTextArea: ''
   }
 }
 
-export let addPostS=(newpost_p)=>{
-  
-  var newpost={
-    id:5,
-    message:newpost_p,
-    like:0
+export let addPostS = () => {
+  var newpost = {
+    id: 5,
+    message: state.profilePage.newPostTextArea,
+    like: 0
   }
   state.profilePage.postData.push(newpost)
-
-
+  state.profilePage.newPostTextArea='';
   renderAll(state);
-
 }
 
+export let updateNewPostTextArea = (updatedText) => {
+  state.profilePage.newPostTextArea = updatedText;
+
+  renderAll(state);
+}
 
 
 export default state

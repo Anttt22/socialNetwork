@@ -3,6 +3,8 @@ import React from "react";
 import Post from './Post/Post'
 import k from './MyPosts.module.css'
 import {addPostS} from '../../../redux/state'
+import {updateNewPostTextArea} from '../../../redux/state'
+
 
 const MyPosts = (props) => {
 
@@ -12,8 +14,13 @@ const MyPosts = (props) => {
     let newPost_r = React.createRef()
 
     let addPost = ()=>{
-      let text= newPost_r.current.value;
-      addPostS(text)
+      addPostS()
+  
+    }
+
+    let onChangeTextArea=()=>{
+      let text= newPost_r.current.value; 
+      updateNewPostTextArea(text)
     }
    
   return (
@@ -21,7 +28,7 @@ const MyPosts = (props) => {
     <div className={k.postsBlock}>
       <h3>My posts</h3>
       <div>
-        <div><textarea ref={newPost_r} value="fixed text"/></div>
+        <div><textarea ref={newPost_r} onChange={onChangeTextArea} value={props.nTextD}/></div>
         <div><button onClick={addPost}>Add post</button></div>
       </div>
       
