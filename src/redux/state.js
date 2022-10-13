@@ -1,4 +1,6 @@
-import { renderAll } from '.././render'
+let renderAll=()=>{
+ console.log('blind function');
+}
 
 
 let state = {
@@ -19,6 +21,7 @@ let state = {
       { id: 5, name: 'yoyoy' },
       { id: 6, name: 'holimoly' }
     ],
+    newMessageTextArea: ''
   },
   profilePage: {
     postData: [
@@ -43,8 +46,27 @@ export let addPostS = () => {
 
 export let updateNewPostTextArea = (updatedText) => {
   state.profilePage.newPostTextArea = updatedText;
-
   renderAll(state);
+}
+
+export let addMessageS =()=>{
+  var newMessage = {
+    id:7,
+    name: state.dialogsPage.newMessageTextArea,
+  }
+  state.dialogsPage.messageData.push(newMessage)
+  state.dialogsPage.newMessageTextArea='';
+  renderAll(state);
+  
+}
+
+export let updateNewMessageTextArea = (updatedText) => {
+  state.dialogsPage.newMessageTextArea = updatedText;
+  renderAll(state);
+}
+
+export const subscribe=(observer)=>{
+  renderAll=observer;
 }
 
 

@@ -5,11 +5,12 @@
 }
 
 .dialogItems{
+ 
  padding: 10px;
 }
 
 .dialog{
- color:blue;
+ color:rgb(195, 231, 35);
 }
 
 .dialog.active{
@@ -17,9 +18,10 @@
 }
 
 .messageItems{
+  
   padding: 10px;
 }
 
 .message{
-  color:blueviolet
+  color:rgb(226, 204, 35)
 }

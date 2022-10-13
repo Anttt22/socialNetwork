@@ -15,7 +15,7 @@ const MyPosts = (props) => {
 
     let addPost = ()=>{
       addPostS()
-  
+     
     }
 
     let onChangeTextArea=()=>{
