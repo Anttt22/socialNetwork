@@ -1,10 +1,9 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import React from "react";
 import Post from './Post/Post'
 import k from './MyPosts.module.css'
-import {addPostS} from '../../../redux/state'
-import {updateNewPostTextArea} from '../../../redux/state'
 
+
+import store from '../../../redux/state'
 
 const MyPosts = (props) => {
 
@@ -14,13 +13,13 @@ const MyPosts = (props) => {
     let newPost_r = React.createRef()
 
     let addPost = ()=>{
-      addPostS()
+      store.addPostS()
      
     }
 
     let onChangeTextArea=()=>{
       let text= newPost_r.current.value; 
-      updateNewPostTextArea(text)
+      store.updateNewPostTextArea(text)
     }
    
   return (

@@ -4,6 +4,7 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import {addMessageS} from './../../redux/state'
 import {updateNewMessageTextArea} from './../../redux/state'
+import store from '../../redux/state'
 
 const Dialogs = (props) => {
   
@@ -14,14 +15,14 @@ const Dialogs = (props) => {
     .map(elem => (<Message message={elem.name} />))
   
   let addMessage = ()=>{
-    addMessageS()
+    store.addMessageS()
   }
 
   let newMessage_r = React.createRef();
 
   let onChangeMessageArea =()=>{
     let text=newMessage_r.current.value;
-    updateNewMessageTextArea(text);
+    store.updateNewMessageTextArea(text);
   }
   console.log(props.nMessageD)
 

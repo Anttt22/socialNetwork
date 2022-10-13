@@ -1,23 +1,20 @@
-
-import state, {subscribe} from './redux/state'
+import store from './redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
 
-
-
 let renderAll = ()=>{
   ReactDOM.render(
-    <App state={state}/>,
+    <App state={store.getState()}/>,
     document.getElementById('root')    
   );
 
 }
 
-renderAll(state);
+renderAll(store._state);
 
-subscribe(renderAll);
+store.subscribe(renderAll);
 
 
 
