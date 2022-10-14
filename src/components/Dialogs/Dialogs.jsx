@@ -2,9 +2,9 @@ import React from "react";
 import d from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {addMessageS} from './../../redux/state'
-import {updateNewMessageTextArea} from './../../redux/state'
-import store from '../../redux/state'
+import {onChangeMessageAreaActionCreator} from "../../redux/state"
+import {AddMessageActionCreator} from "../../redux/state"
+
 
 const Dialogs = (props) => {
   
@@ -15,14 +15,18 @@ const Dialogs = (props) => {
     .map(elem => (<Message message={elem.name} />))
   
   let addMessage = ()=>{
-    store.addMessageS()
+    //debugger
+    props.dispatch(AddMessageActionCreator())
+    
+    //store.addMessageS()
   }
 
   let newMessage_r = React.createRef();
 
   let onChangeMessageArea =()=>{
-    let text=newMessage_r.current.value;
-    store.updateNewMessageTextArea(text);
+    let text=newMessage_r.current.value;  
+    props.dispatch(onChangeMessageAreaActionCreator(text))
+    //store.updateNewMessageTextArea(text);
   }
   console.log(props.nMessageD)
 

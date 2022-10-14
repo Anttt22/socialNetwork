@@ -1,5 +1,10 @@
+const ADD_POST='ADD_POSTS'
+const UPDATE_NEW_POST_TEXT_AREA ='UPDATE_NEW_POST_TEXT_AREA'
+const ADD_MESSAGES='ADD_MESSAGES'
+const UPDATE_NEW_MESSAGE_TEXT_AREA='UPDATE_NEW_MESSAGE_TEXT_AREA'
+
 let store = {
-  _state : {
+  _state: {
     dialogsPage: {
       dialogsData: [
         { id: 1, name: 'Vasya' },
@@ -28,50 +33,80 @@ let store = {
       newPostTextArea: ''
     }
   },
-  getState(){
+
+  _callSubscriber() {
+    console.log('blind function');
+  },
+
+  getState() {
     return this._state;
   },
 
-  _callSubscriber(){
-    console.log('blind function');
-   },
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
 
-  addPostS() {
-    let newpost = {
-      id: 5,
-      message: this._state.profilePage.newPostTextArea,
-      like: 0
+
+  dispatch(action) {
+    //debugger;
+    if (action.type === ADD_POST) {
+      let newpost = {
+        id: 5,
+        message: this._state.profilePage.newPostTextArea,
+        like: 0
+      }
+      this._state.profilePage.postData.push(newpost)
+      this._state.profilePage.newPostTextArea = '';
+      this._callSubscriber(this._state);
+    } else if (action.type === UPDATE_NEW_POST_TEXT_AREA) {
+
+      this._state.profilePage.newPostTextArea = action.newtext;
+
+      this._callSubscriber(this._state);
+    } else if (action.type === ADD_MESSAGES) {
+      var newMessage = {
+        id: 7,
+        name: this._state.dialogsPage.newMessageTextArea,
+      }
+      //debugger
+      this._state.dialogsPage.messageData.push(newMessage)
+      this._state.dialogsPage.newMessageTextArea = '';
+      this._callSubscriber(this._state);
+      //debugger
+
+    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT_AREA) {
+      this._state.dialogsPage.newMessageTextArea = action.newtext;
+      this._callSubscriber(this._state);
     }
-    this._state.profilePage.postData.push(newpost)
-    this._state.profilePage.newPostTextArea='';
-    this._callSubscriber(this._state);
   },
+}
 
-  updateNewPostTextArea(updatedText){
-    this._state.profilePage.newPostTextArea = updatedText;
-    this._callSubscriber(this._state);
-  },
 
-  addMessageS(){
-    var newMessage = {
-      id:7,
-      name: this._state.dialogsPage.newMessageTextArea,
-    }
-    this._state.dialogsPage.messageData.push(newMessage)
-    this._state.dialogsPage.newMessageTextArea='';
-    this._callSubscriber(this._state);
-    
-  },
-
-  updateNewMessageTextArea(updatedText){
-    this._state.dialogsPage.newMessageTextArea = updatedText;
-    this._callSubscriber(this._state);
-  },
-
-  subscribe(observer){
-    this._callSubscriber=observer;
+export const onChangeMessageAreaActionCreator = (text) => {
+  //debugger
+  return {
+    type: "UPDATE_NEW_MESSAGE_TEXT_AREA",
+    newtext: text
   }
+}
 
+export const AddMessageActionCreator = () => {
+  //debugger
+  return {
+    type: 'ADD_MESSAGES'
+  }
+}
+
+export const addPostActionCreator = () => {
+  return {
+    type: "ADD_POSTS"
+  }
+}
+export const onChangeTextAreaActionCreator = (text) => {
+  return {
+    type: "UPDATE_NEW_POST_TEXT_AREA",
+    newtext: text
+  }
 }
 
 

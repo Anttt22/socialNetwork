@@ -19,11 +19,13 @@ const App = (props) => {
 
           <Routes>
             <Route path="/dialogs" element={<Dialogs
+              dispatch={props.dispatch}
               mD={props.state.dialogsPage.messageData}
               dD={props.state.dialogsPage.dialogsData}
               nMessageD={props.state.dialogsPage.newMessageTextArea}/>} />
             
             <Route path="/profile" element={<Profile
+              dispatch={props.dispatch}
               pD={props.state.profilePage.postData}
               nTextD={props.state.profilePage.newPostTextArea} />} />
 

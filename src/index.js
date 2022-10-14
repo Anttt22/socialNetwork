@@ -6,7 +6,7 @@ import App from './App';
 
 let renderAll = ()=>{
   ReactDOM.render(
-    <App state={store.getState()}/>,
+    <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>,
     document.getElementById('root')    
   );
 
@@ -18,7 +18,7 @@ store.subscribe(renderAll);
 
 
 
-
+//40
 
 
 
