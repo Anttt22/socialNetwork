@@ -2,8 +2,8 @@ import React from "react";
 import d from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {onChangeMessageAreaActionCreator} from "../../redux/state"
-import {AddMessageActionCreator} from "../../redux/state"
+import {onChangeMessageAreaActionCreator} from "../../redux/dialogs-reducer"
+import {AddMessageActionCreator} from "../../redux/dialogs-reducer"
 
 
 const Dialogs = (props) => {
@@ -18,7 +18,6 @@ const Dialogs = (props) => {
     //debugger
     props.dispatch(AddMessageActionCreator())
     
-    //store.addMessageS()
   }
 
   let newMessage_r = React.createRef();
@@ -44,8 +43,7 @@ const Dialogs = (props) => {
 
         <div>
           <div><textarea ref ={newMessage_r} onChange={onChangeMessageArea} value={props.nMessageD} /></div>
-          <div><button onClick={addMessage} >Send Message</button></div>
-          
+          <div><button onClick={addMessage} >Send Message</button></div>      
         </div>
       </div>
 
