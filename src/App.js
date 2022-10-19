@@ -21,15 +21,11 @@ const App = (props) => {
         <div class='app-wrapper-content'>
           <Routes>
             <Route path="/dialogs" element={<DialogsContainer
-            store={props.store}
-              //dispatch={props.dispatch}
-              //mD={props.state.dialogsPage.messageData}
-              //dD={props.state.dialogsPage.dialogsData}
-              //nMessageD={props.state.dialogsPage.newMessageTextArea}
+             
               />} />
             
             <Route path="/profile" element={<Profile
-              store={props.store}
+              
               />} />
 
             <Route path="/news" element={<News />} />
