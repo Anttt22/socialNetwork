@@ -1,24 +1,31 @@
-import store from './redux/state'
+import store from './redux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { BrowserRouter } from "react-router-dom";
 
 
-let renderAll = ()=>{
+let renderAll = (state) => {
+  //debugger
   ReactDOM.render(
-    <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>,
-    document.getElementById('root')    
+    <BrowserRouter>
+      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />,
+    </BrowserRouter>,
+    document.getElementById('root')
   );
 
 }
 
-renderAll(store._state);
+renderAll(store.getState());
 
-store.subscribe(renderAll);
+store.subscribe(() => {
+  let state = store.getState();
+  renderAll(state)
+});
 
 
 
-//40
+//43
 
 
 

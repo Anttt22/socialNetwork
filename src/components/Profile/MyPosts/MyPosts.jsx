@@ -5,21 +5,20 @@ import {addPostActionCreator, onChangeTextAreaActionCreator} from '../../../redu
 
 const MyPosts = (props) => {
 
-  let postElements = props.pd
-    .map(elem => (<Post message={elem.message} like={elem.like} />))
+  let postElements =
+   props.pd.map(elem => (<Post message={elem.message} like={elem.like} />))
 
   let newPost_r = React.createRef()
 
-
-
-  let addPost = () => {
-    props.dispatch(addPostActionCreator())
+  let onAddPost = () => {
+    props.addPost();
+    //props.dispatch(addPostActionCreator())
   }
 
   let onChangeTextArea = () => {
     let text = newPost_r.current.value;
-    props.dispatch(onChangeTextAreaActionCreator(text));
-    //store.updateNewPostTextArea(text)
+    //props.dispatch(onChangeTextAreaActionCreator(text));
+    props.updateNewPostTextArea(text)
   }
 
   return (
@@ -28,7 +27,7 @@ const MyPosts = (props) => {
       <h3>My posts</h3>
       <div>
         <div><textarea ref={newPost_r} onChange={onChangeTextArea} value={props.nTextD} /></div>
-        <div><button onClick={addPost}>Add post</button></div>
+        <div><button onClick={onAddPost}>Add post</button></div>
       </div>
 
       <div className={k.item}>

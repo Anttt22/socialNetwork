@@ -2,32 +2,34 @@ import React from "react";
 import d from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {onChangeMessageAreaActionCreator} from "../../redux/dialogs-reducer"
-import {AddMessageActionCreator} from "../../redux/dialogs-reducer"
-
+import { onChangeMessageAreaActionCreator } from "../../redux/dialogs-reducer"
+import { AddMessageActionCreator } from "../../redux/dialogs-reducer"
+import DialogsContainer from "./DialogsContainer";
 
 const Dialogs = (props) => {
-  
-  let dialogsElements = props.dD
+
+  let state = props.dialogsPage
+
+  let dialogsElements = props.dialogsPage.dialogsData
     .map(elem => (<Dialog id={elem.id} name={elem.name} />))
 
-  let messageElements = props.mD
+  let messageElements = props.dialogsPage.messageData
     .map(elem => (<Message message={elem.name} />))
-  
-  let addMessage = ()=>{
+
+
+  let newMessageBody= state.newMessageTextArea
+//debugger
+  let onSendMessageClick = () => {
     //debugger
-    props.dispatch(AddMessageActionCreator())
-    
+
+    props.addMessage();
   }
 
-  let newMessage_r = React.createRef();
-
-  let onChangeMessageArea =()=>{
-    let text=newMessage_r.current.value;  
-    props.dispatch(onChangeMessageAreaActionCreator(text))
-    //store.updateNewMessageTextArea(text);
+  let onChangeMessageArea = (e) => {
+    let body = e.target.value;
+    props.updateNewMessageBody(body);
   }
-  console.log(props.nMessageD)
+
 
   return (
     <div className={d.dialogs}>
@@ -42,8 +44,13 @@ const Dialogs = (props) => {
         </div>
 
         <div>
-          <div><textarea ref ={newMessage_r} onChange={onChangeMessageArea} value={props.nMessageD} /></div>
-          <div><button onClick={addMessage} >Send Message</button></div>      
+          <div><textarea
+            onChange={onChangeMessageArea}
+            value={newMessageBody}
+            placeholder='enermessage'>
+          </textarea>
+          </div>
+          <div><button onClick={onSendMessageClick} >Send Message</button></div>
         </div>
       </div>
 
